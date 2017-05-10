@@ -29,3 +29,7 @@ trait FalseType extends BoolType {
   override type Not = TrueType
   override type Or[That <: BoolType] = That
 }
+
+object BoolType {
+  type \/[A <: BoolType, B <: BoolType] = A#Or[B]
+}

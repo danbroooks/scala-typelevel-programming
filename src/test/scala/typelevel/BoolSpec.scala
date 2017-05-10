@@ -1,5 +1,6 @@
 package typelevel
 
+import BoolType._
 import org.scalatest._
 
 class BoolSpec extends FreeSpec with Matchers {
@@ -60,6 +61,13 @@ class BoolSpec extends FreeSpec with Matchers {
         implicitly[FalseType#Or[TrueType] =:= TrueType]
         implicitly[FalseType#Or[FalseType] =:= FalseType]
       }
+    }
+
+    "\\/" in {
+      implicitly[(FalseType \/ FalseType) =:= FalseType]
+      implicitly[(TrueType \/ FalseType) =:= TrueType]
+      implicitly[(TrueType \/ TrueType) =:= TrueType]
+      implicitly[(FalseType \/ TrueType) =:= TrueType]
     }
   }
 }
