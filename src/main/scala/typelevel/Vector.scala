@@ -6,7 +6,7 @@ sealed trait Vector {
   def size: Int
 }
 
-case object VNil extends Vector {
+case object VNilVal extends Vector {
   override def +(that: Vector) = {
     require(that == VNil)
     this
@@ -15,7 +15,7 @@ case object VNil extends Vector {
   override val size = 0
 }
 
-case class NonEmptyVector(head: Int, tail: Vector) extends Vector {
+case class #(head: Int, tail: Vector) extends Vector {
   override def +(that: Vector) = {
     require(that.size == size)
     that match { case NonEmptyVector(h, t) => (head + h) :: (tail + t) }
@@ -23,3 +23,5 @@ case class NonEmptyVector(head: Int, tail: Vector) extends Vector {
 
   override val size = 1 + tail.size
 }
+
+

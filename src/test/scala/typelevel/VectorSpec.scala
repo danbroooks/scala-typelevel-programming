@@ -8,5 +8,9 @@ class VectorSpec extends FreeSpec with Matchers {
       val sum = (1 :: 2 :: VNil) + (3 :: 4 :: VNil)
       sum shouldEqual 4 :: 6 :: VNil
     }
+
+    "will fail when attempting to combine vectors of differing lengths" in {
+      "(1 :: 2 :: VNil) + (3 :: VNil)" shouldNot compile
+    }
   }
 }
